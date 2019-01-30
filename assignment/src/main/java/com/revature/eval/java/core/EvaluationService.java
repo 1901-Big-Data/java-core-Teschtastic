@@ -33,11 +33,8 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		String acro = "";
 		for (String arr : phrase.split("[ -]"))
-		{
 			acro += arr.charAt(0);
-		}
 		acro = acro.toUpperCase();
-		System.out.println(acro);
 		return acro;
 	}
 
@@ -298,6 +295,19 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
+		String number = String.valueOf(input);
+
+		char[] digits = number.toCharArray();
+		int arm = 0;
+		int res = 0;
+		
+		for(int i = 0; i < digits.length - 1; i++)
+		{
+			arm = digits[i] - '0';
+			res *= 10;
+			res *= arm;
+		}
+		System.out.println(res);
 		return false;
 	}
 
