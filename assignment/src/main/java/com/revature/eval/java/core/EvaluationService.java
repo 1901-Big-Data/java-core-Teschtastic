@@ -197,9 +197,22 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String cleanPhoneNumber(String string) throws IllegalArgumentException {
+		String arr[] = string.split("[ +()-._]");
+		String finNum = "";
+		
+		for(int i = 0; i < arr.length; i++)
+		{
+			finNum += arr[i];
+
+			if(Pattern.matches("[A-Za-z!@#$%^&*]", arr[i]))
+				throw new IllegalArgumentException("Illegal characters in phone number.");
+		}
+		
+		if(arr.length > 11)
+			throw new IllegalArgumentException("Phone number cannot be longer than 11 digits.");
+			
+		return finNum;
 	}
 
 	/**
