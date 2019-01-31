@@ -3,6 +3,8 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EvaluationService {
 
@@ -30,7 +32,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
 		String acro = "";
 		for (String arr : phrase.split("[ -]"))
 			acro += arr.charAt(0);
@@ -88,7 +89,6 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
 			double s1, s2, s3;
 			s1 = getSideOne();
 			s2 = getSideTwo();
@@ -101,7 +101,6 @@ public class EvaluationService {
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
 			double s1, s2, s3;
 			s1 = getSideOne();
 			s2 = getSideTwo();
@@ -114,7 +113,6 @@ public class EvaluationService {
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
 			double s1, s2, s3;
 			s1 = getSideOne();
 			s2 = getSideTwo();
@@ -125,7 +123,6 @@ public class EvaluationService {
 			else
 				return false;
 		}
-
 	}
 
 	/**
@@ -144,8 +141,29 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		String arr[] = string.split("");
+		int score = 0;
+		
+		for(int i = 0; i < arr.length; i++)
+		{
+			arr[i] = arr[i].toUpperCase();
+			
+			if(Pattern.matches("[AEIOULNRST]", arr[i]))
+				score +=1;
+			if(Pattern.matches("[DG]", arr[i]))
+				score += 2;
+			if(Pattern.matches("[BCMP]", arr[i]))
+				score += 3;
+			if(Pattern.matches("[FHVWY]", arr[i]))
+				score += 4;
+			if(Pattern.matches("[K]", arr[i]))
+				score += 5;
+			if(Pattern.matches("[JX]", arr[i]))
+				score += 8;
+			if(Pattern.matches("[QZ]", arr[i]))
+				score += 10;
+		}
+		return score;
 	}
 
 	/**
@@ -361,7 +379,6 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declarationString shifted = "";
 			StringBuffer result= new StringBuffer();
 			char ch = 0;
 			for (int i=0; i < string.length(); i++) 
@@ -386,7 +403,6 @@ public class EvaluationService {
 	        }
 	        return result.toString();
 		}
-
 	}
 
 	/**
@@ -600,12 +616,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
 		String mult = "multiplied by", div = "divided by", plus = "plus", minus = "minus";
 		String arr[] = string.split("[ ?]");
 		int num1 = 0, num2 = 0;
-		
-		System.out.println((arr[3] + " " + arr[4]));
 		
 		if((arr[3] + " " + arr[4]).equals(mult)) {
 			num1 = Integer.parseInt(arr[2]);
