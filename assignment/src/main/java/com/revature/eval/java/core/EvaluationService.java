@@ -36,6 +36,7 @@ public class EvaluationService {
 		for (String arr : phrase.split("[ -]"))
 			acro += arr.charAt(0);
 		acro = acro.toUpperCase();
+		System.out.println(acro);
 		return acro;
 	}
 
@@ -89,36 +90,25 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			double s1, s2, s3;
-			s1 = getSideOne();
-			s2 = getSideTwo();
-			s3 = getSideThree();
-			
-			if (s1 == s2 && s1 == s3)
+			if (sideOne == sideTwo && sideOne == sideThree)
 				return true;
 			else
 				return false;
 		}
 
 		public boolean isIsosceles() {
-			double s1, s2, s3;
-			s1 = getSideOne();
-			s2 = getSideTwo();
-			s3 = getSideThree();
 			
-			if ((s1 == s2 && s1 != s3)||(s2 == s3 && s2 != s1)||(s3 == s1 && s3 != s2))
+			if ((sideOne == sideTwo && sideOne != sideThree)
+					||(sideTwo == sideThree && sideTwo != sideOne)
+					||(sideThree == sideOne && sideThree != sideTwo))
 				return true;
 			else
 				return false;
 		}
 
 		public boolean isScalene() {
-			double s1, s2, s3;
-			s1 = getSideOne();
-			s2 = getSideTwo();
-			s3 = getSideThree();
 			
-			if (s1 != s2 && s1 != s3)
+			if (sideOne != sideTwo && sideOne != sideThree)
 				return true;
 			else
 				return false;
