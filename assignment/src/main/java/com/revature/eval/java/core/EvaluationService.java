@@ -361,8 +361,30 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// TODO Write an implementation for this method declarationString shifted = "";
+			StringBuffer result= new StringBuffer();
+			char ch = 0;
+			for (int i=0; i < string.length(); i++) 
+	        { 
+	            if (Character.isUpperCase(string.charAt(i))) 
+	            { 
+	                ch = (char)(((int)string.charAt(i) + key - 65) % 26 + 65); 
+	                result.append(ch); 
+	            } 
+	            else if (Character.isLowerCase(string.charAt(i)))
+	            { 
+	                ch = (char)(((int)string.charAt(i) + key - 97) % 26 + 97); 
+	                result.append(ch); 
+	            }
+	            else if (Character.isDigit(string.charAt(i)) || string.charAt(i) == ',' || string.charAt(i) == '-' || string.charAt(i) == ' '
+	            		|| string.charAt(i) == '.' || string.charAt(i) == '!' || string.charAt(i) == '?' || string.charAt(i) == '\'')
+	            {
+	            	result.append(string.charAt(i));
+	            }
+	        } 
+			
+			System.out.println(result);
+	        return result.toString();
 		}
 
 	}
