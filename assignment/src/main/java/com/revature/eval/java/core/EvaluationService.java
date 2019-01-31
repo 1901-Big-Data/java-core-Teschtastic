@@ -376,14 +376,14 @@ public class EvaluationService {
 	                ch = (char)(((int)string.charAt(i) + key - 97) % 26 + 97); 
 	                result.append(ch); 
 	            }
-	            else if (Character.isDigit(string.charAt(i)) || string.charAt(i) == ',' || string.charAt(i) == '-' || string.charAt(i) == ' '
-	            		|| string.charAt(i) == '.' || string.charAt(i) == '!' || string.charAt(i) == '?' || string.charAt(i) == '\'')
+	            else if (Character.isDigit(string.charAt(i)) || string.charAt(i) == ',' 
+	            		|| string.charAt(i) == '-' || string.charAt(i) == ' '
+	            		|| string.charAt(i) == '.' || string.charAt(i) == '!' 
+	            		|| string.charAt(i) == '?' || string.charAt(i) == '\'')
 	            {
 	            	result.append(string.charAt(i));
 	            }
-	        } 
-			
-			System.out.println(result);
+	        }
 	        return result.toString();
 		}
 
@@ -601,6 +601,39 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for this method declaration
+		String mult = "multiplied by", div = "divided by", plus = "plus", minus = "minus";
+		String arr[] = string.split("[ ?]");
+		int num1 = 0, num2 = 0;
+		
+		System.out.println((arr[3] + " " + arr[4]));
+		
+		if((arr[3] + " " + arr[4]).equals(mult)) {
+			num1 = Integer.parseInt(arr[2]);
+			num2 = Integer.parseInt(arr[5]);
+			
+			return (num1 * num2);
+		} 
+		else if(arr[3].equals(plus)) {
+			System.out.println(arr[3]);
+			num1 = Integer.parseInt(arr[2]);
+			num2 = Integer.parseInt(arr[4]);
+			
+			return (num1 + num2);
+			
+		}
+		else if((arr[3] + " " + arr[4]).equals(div)) {
+			num1 = Integer.parseInt(arr[2]);
+			num2 = Integer.parseInt(arr[5]);
+			
+			return (num1 / num2);
+		}
+		else if(arr[3].equals(minus)) {
+			System.out.println(arr[3]);
+			num1 = Integer.parseInt(arr[2]);
+			num2 = Integer.parseInt(arr[4]);
+			
+			return (num1 - num2);
+		}
 		return 0;
 	}
 
