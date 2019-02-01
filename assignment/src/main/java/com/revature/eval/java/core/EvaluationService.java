@@ -3,7 +3,6 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EvaluationService {
@@ -36,7 +35,6 @@ public class EvaluationService {
 		for (String arr : phrase.split("[ -]"))
 			acro += arr.charAt(0);
 		acro = acro.toUpperCase();
-		System.out.println(acro);
 		return acro;
 	}
 
@@ -139,7 +137,7 @@ public class EvaluationService {
 			arr[i] = arr[i].toUpperCase();
 			
 			if(Pattern.matches("[AEIOULNRST]", arr[i]))
-				score +=1;
+				score += 1;
 			if(Pattern.matches("[DG]", arr[i]))
 				score += 2;
 			if(Pattern.matches("[BCMP]", arr[i]))
@@ -420,9 +418,29 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
+	
+	public boolean isPrime(int j) {
+		for(int i = 2; i < j; ++i) {
+	        if (j % i == 0) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int num, count;
+		
+		if (i < 2) {
+			throw new IllegalArgumentException();
+		}
+		
+	    for(num = 2, count = 0; count < i; ++num) {
+	    	if (isPrime(num)) {
+	    		++count;
+	    		}
+	    }
+	    return num-1;
 	}
 
 	/**
