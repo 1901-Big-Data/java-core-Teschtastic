@@ -262,8 +262,40 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			List<T> test = getSortedList();
+			String list = test.toString();
+			String T = t.toString();
+			
+			list = list.replaceAll("[,\\[\\]]", "");
+			String[] arr = list.split("\\s");
+			
+			int length, mid, start, end, x;
+			length = arr.length;
+			x = Integer.parseInt(T);
+			
+			start = 0;
+			end = length - 1;
+
+			int[] intArr = new int[50];
+			for(int i = 0; i < arr.length; i++)
+				intArr[i] = Integer.parseInt(arr[i]);
+			
+			 while(start <= end) {
+				 if(length >= 1) {
+					 mid = (start + end) /2;
+					
+					 if(intArr[mid] == x)
+						 return mid;
+				
+					 else if(intArr[mid] < x)
+						 start = mid + 1;
+				
+					 else if(intArr[mid] > x)
+						 end = mid - 1;
+				 }
+			 }
+
+			return -1;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -638,7 +670,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
 		return false;
 	}
 
@@ -685,7 +716,6 @@ public class EvaluationService {
 			num2 = Integer.parseInt(arr[4]);
 			
 			return (num1 + num2);
-			
 		}
 		else if((arr[3] + " " + arr[4]).equals(div)) {
 			num1 = Integer.parseInt(arr[2]);
@@ -701,5 +731,4 @@ public class EvaluationService {
 		}
 		return 0;
 	}
-
 }
