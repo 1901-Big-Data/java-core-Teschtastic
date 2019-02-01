@@ -188,15 +188,15 @@ public class EvaluationService {
 	public String cleanPhoneNumber(String string) throws IllegalArgumentException {
 		String arr[] = string.split("[ +()-._]");
 		String storeNum = "";
-		for(int i = 0; i < arr.length; i++) {
+		
+		for(int i = 0; i < arr.length; i++)
 			storeNum += arr[i];
-		}
+		
 		arr = storeNum.split("");
 		String finNum = "";
 		
 		for(int i = 0; i < arr.length; i++)
 		{
-			System.out.println(arr[i]);
 			finNum += arr[i];
 
 			if(Pattern.matches("[a-zA-Z!@#$%^&*:;\"\'?><,]", arr[i]))
@@ -437,7 +437,7 @@ public class EvaluationService {
 	public int calculateNthPrime(int i) {
 		int num, count;
 		
-		if (i < 2) {
+		if (i < 1) {
 			throw new IllegalArgumentException();
 		}
 		
@@ -539,8 +539,35 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		String arr[] = string.split(" ");
+		String store = "", finalS = "";
+		
+		boolean[] list = new boolean[26];
+		int check = 0;
+
+		if(string == "")
+			return false;
+		
+		for(int i = 0; i < arr.length; i++) {
+			store += arr[i];
+		}
+		
+		arr = store.split("");
+		
+		for(int i = 0; i < arr.length; i++) {
+			finalS += arr[i];
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+			check = finalS.charAt(i) - 'a';
+			list[check] = true;
+		}
+		
+		for (int i = 0; i < 26; i++) 
+            if (list[i] == false) 
+                return false; 
+  
+        return true;
 	}
 
 	/**
@@ -654,7 +681,6 @@ public class EvaluationService {
 			return (num1 * num2);
 		} 
 		else if(arr[3].equals(plus)) {
-			System.out.println(arr[3]);
 			num1 = Integer.parseInt(arr[2]);
 			num2 = Integer.parseInt(arr[4]);
 			
@@ -668,7 +694,6 @@ public class EvaluationService {
 			return (num1 / num2);
 		}
 		else if(arr[3].equals(minus)) {
-			System.out.println(arr[3]);
 			num1 = Integer.parseInt(arr[2]);
 			num2 = Integer.parseInt(arr[4]);
 			
