@@ -187,13 +187,19 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) throws IllegalArgumentException {
 		String arr[] = string.split("[ +()-._]");
+		String storeNum = "";
+		for(int i = 0; i < arr.length; i++) {
+			storeNum += arr[i];
+		}
+		arr = storeNum.split("");
 		String finNum = "";
 		
 		for(int i = 0; i < arr.length; i++)
 		{
+			System.out.println(arr[i]);
 			finNum += arr[i];
 
-			if(Pattern.matches("[A-Za-z!@#$%^&*]", arr[i]))
+			if(Pattern.matches("[a-zA-Z!@#$%^&*:;\"\'?><,]", arr[i]))
 				throw new IllegalArgumentException("Illegal characters in phone number.");
 		}
 		
