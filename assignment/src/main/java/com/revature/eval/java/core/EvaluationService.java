@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -219,8 +220,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> count = new HashMap<>();
+		String[] arr = string.split("[ ,]");
+		
+		for ( String word : arr ) {
+			   Integer oldCount = count.get(word);
+			   if ( oldCount == null ) {
+			      oldCount = 0;
+			   }
+			   count.put(word, oldCount + 1);
+			}
+		
+		
+		return count;
 	}
 
 	/**
@@ -351,23 +363,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		int sum = 0, remainder, temp, digits = 0;
+		int sum = 0, digits = 0, remain, temp;
 		
 	    temp = input;  
-	    
 	    while(temp != 0) {
 	    	digits++;
 	    	temp /= 10;
 	    }
 
 	    temp = input; 
-	    
 	    while(temp != 0)  
 	    {  
-	    	remainder = temp % 10;  
-	    	sum += Math.pow(remainder, digits); 
-	    	temp = temp / 10;  
-	    	System.out.println(sum); 
+	    	remain = temp % 10;  
+	    	sum += Math.pow(remain, digits); 
+	    	temp = temp / 10;
 	    } 
 	    
 	    if(input == sum)  
