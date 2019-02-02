@@ -351,20 +351,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		String number = String.valueOf(input);
-
-		char[] digits = number.toCharArray();
-		int arm = 0;
-		int res = 0;
+		int sum = 0, remainder, temp, digits = 0;
 		
-		for(int i = 0; i < digits.length - 1; i++)
-		{
-			arm = digits[i] - '0';
-			res *= 10;
-			res *= arm;
-		}
-		System.out.println(res);
+	    temp = input;  
+	    
+	    while(temp != 0) {
+	    	digits++;
+	    	temp /= 10;
+	    }
+
+	    temp = input; 
+	    
+	    while(temp != 0)  
+	    {  
+	    	remainder = temp % 10;  
+	    	sum += Math.pow(remainder, digits); 
+	    	temp = temp / 10;  
+	    	System.out.println(sum); 
+	    } 
+	    
+	    if(input == sum)  
+	    	return true; 
+		
 		return false;
 	}
 
@@ -670,6 +678,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
+		// TODO Write an implementation for this method declaration
 		return false;
 	}
 
