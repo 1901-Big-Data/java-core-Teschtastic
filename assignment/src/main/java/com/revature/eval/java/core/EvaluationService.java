@@ -351,7 +351,7 @@ public class EvaluationService {
             String pigLatinWord = translate(arr[i]);
             output += pigLatinWord + " ";
         }
-		
+
 		output = output.substring(0, output.length() - 1);
 		
 		return output;
@@ -571,8 +571,35 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			Map<Character, Character> cipher = new HashMap<Character, Character>();
+			
+			for(int i = 0; i < 26; i++) {
+				cipher.put((char)('a' + i), (char)('z' - i));
+			}
+			
+			for(int i = 0; i < 10; i++) {
+				cipher.put((char)('0' + i), (char)('0' - i));
+			}
+			
+			string = string.replaceAll("[ ,.!?]", "");
+			string = string.toLowerCase();
+			
+			String encoded = "";
+//			 
+			for(int i = 0; i < string.length(); i++) {
+				char c = string.charAt(i);
+				
+				if (Character.isLetter((c)))
+					encoded += cipher.get(c);
+				
+				if (Character.isDigit(c))
+					encoded += c;
+				
+				if ((i + 1) % 5 == 0)
+					encoded += " ";
+			}
+
+			return encoded.trim();
 		}
 
 		/**
@@ -582,8 +609,7 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			return encode(string).replaceAll(" ", "");
 		}
 	}
 
