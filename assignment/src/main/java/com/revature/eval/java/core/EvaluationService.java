@@ -343,10 +343,42 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String toPigLatin(String word) {
+		String[] arr = word.split(" ");
+		String output = "";
+	    
+		for (int i = 0; i < arr.length; i++) {
+            String pigLatinWord = translate(arr[i]);
+            output += pigLatinWord + " ";
+        }
+		
+		output = output.substring(0, output.length() - 1);
+		
+		return output;
 	}
+	
+	public String translate(String string) {
+		int len = string.length(); 
+	    int index = -1; 
+	    
+	    for (int i = 0; i < len; i++) 
+	    { 
+	    	if (isVowel(string.charAt(i)) && string.charAt(i-1) == 'q') {
+	    		index = i+1;
+	    		break; 
+	    	} else if (isVowel(string.charAt(i))) { 
+	        	index = i; 
+	        	break; 
+	    	}
+	    }
+	   
+	    return string.substring(index) + string.substring(0, index) + "ay";
+	}
+	
+	boolean isVowel(char c) { 
+	    return (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' || 
+	            c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'); 
+	} 
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
