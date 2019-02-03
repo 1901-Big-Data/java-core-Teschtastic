@@ -1,5 +1,8 @@
 package com.revature.eval.java.core;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -574,21 +577,17 @@ public class EvaluationService {
 		public static String encode(String string) {
 			Map<Character, Character> cipher = new HashMap<Character, Character>();
 			
-			for(int i = 0; i < 26; i++) {
+			for(int i = 0; i < 26; i++)
 				cipher.put((char)('a' + i), (char)('z' - i));
-			}
-			
-			for(int i = 0; i < 10; i++) {
-				cipher.put((char)('0' + i), (char)('0' - i));
-			}
 			
 			string = string.replaceAll("[ ,.!?]", "");
 			string = string.toLowerCase();
 			
 			String encoded = "";
-//			 
+			char c;
+			
 			for(int i = 0; i < string.length(); i++) {
-				char c = string.charAt(i);
+				c = string.charAt(i);
 				
 				if (Character.isLetter((c)))
 					encoded += cipher.get(c);
@@ -695,8 +694,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		LocalDate birth;
+		LocalDateTime start;
+		LocalDateTime end;
+		
+		int seconds = 1000000000;
+		
+		try {
+			birth = LocalDate.from(given);
+			start = birth.atStartOfDay();
+			end = start.plusSeconds(seconds);
+			
+		} catch(DateTimeException e) {
+			start = LocalDateTime.from(given);
+			end = start.plusSeconds(seconds);
+		}
+		
+		return end;
 	}
 
 	/**
