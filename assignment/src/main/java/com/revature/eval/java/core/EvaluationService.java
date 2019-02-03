@@ -398,6 +398,7 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
         List<Long> factors = new ArrayList<Long>();
+        
         for (int i = 2; i <= l; i++) {
             while (l % i == 0) {
                 factors.add((long) i);
@@ -694,7 +695,36 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		String temp = string.replaceAll("\\s", "");
+		String[] arrS =  new String[temp.length()];
+		arrS = temp.split("");
+		int[] arrI = new int[temp.length()];
+		int sum = 0, length = temp.length(), digit = 0;
+		
+		for(int i = 0; i < length; i++) {
+			if(Pattern.matches("[a-zA-Z-_,.]", arrS[i]))
+				return false;
+			try {
+				arrI[i] = Integer.parseInt(arrS[i]);
+			}
+			catch(NumberFormatException nfe) {
+				throw new NumberFormatException("Trying to parse a non-integer");
+			}
+		}
+		
+		for(int i = 0; i < length; i++) {
+			digit = arrI[length - i - 1];
+			
+			if(i % 2 == 1) {
+				digit *= 2;
+		    }
+
+			sum += digit > 9 ? digit - 9 : digit;
+		}
+		
+		if(sum % 10 == 0)
+			return true;
 		return false;
 	}
 
