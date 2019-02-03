@@ -221,6 +221,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
+		string = string.replace(",\n", " ");
 		Map<String, Integer> count = new HashMap<>();
 		String[] arr = string.split("[ ,]");
 		
