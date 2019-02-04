@@ -367,15 +367,16 @@ public class EvaluationService {
 	    
 	    for (int i = 0; i < len; i++) 
 	    { 
-	    	if (isVowel(string.charAt(i)) && string.charAt(i-1) == 'q') {
+	    	if ((string.charAt(i) == 'u') && (string.charAt(i-1) == 'q')) {
 	    		index = i+1;
 	    		break; 
-	    	} else if (isVowel(string.charAt(i))) { 
+	    	}
+	    	if (isVowel(string.charAt(i))) { 
 	        	index = i; 
 	        	break; 
 	    	}
 	    }
-	   
+	    
 	    return string.substring(index) + string.substring(0, index) + "ay";
 	}
 	
@@ -640,28 +641,21 @@ public class EvaluationService {
 		String[] arr = string.split("");
 		int sum = 0;
 		
-		for (int i = 0; i < arr.length; i++) {
-			if(Pattern.matches("[ABCDEFGHIJKLMONPQRSTUVWYZ]", arr[i])) {
+		for (int i = 0; i < arr.length; i++)
+			if(Pattern.matches("[ABCDEFGHIJKLMONPQRSTUVWYZ]", arr[i]))
 				return false;
-			}
-		}
 
-		if (arr[9].equals("X")) {
-			arr[9] = "10";
-		}
-		
-		if(arr.length > 10) {
+		if(arr.length > 11)
 			return false;
-		}
 		
-		for(int i = 0, j = 10; i < arr.length; i++, j--) {
+		if (arr[9].equals("X"))
+			arr[9] = "10";
+		
+		for(int i = 0, j = 10; i < arr.length; i++, j--)
 			sum += Integer.parseInt(arr[i]) * j;
-			if(sum % 11 == 0) {
-				return true;
-			}
-		}
 		
-		System.out.println(sum);
+		if(sum % 11 == 0)
+			return true;
 		
 		return false;
 	}
